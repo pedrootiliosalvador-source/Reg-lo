@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎁 ¡Feliz Cumpleaños Ricardo!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+            background-size: 400% 400%;
+            animation: fondoAnimado 8s ease infinite;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        @keyframes fondoAnimado {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* 🎈 GLOBOS QUE SUBEN */
+        .globo {
+            position: absolute;
+            bottom: -150px;
+            width: 60px;
+            height: 80px;
+            border-radius: 50% 50% 50% 50%;
+            animation: subir 8s ease-in-out infinite;
+        }
+
+        .globo::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            width: 2px;
+            height: 30px;
+            background: #333;
+            transform: translateX(-50%);
+        }
+
+        @keyframes subir {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-100vh) rotate(15deg); }
+            100% { transform: translateY(-100vh) rotate(-15deg); }
+        }
+
+        /* 🎊 CONFETI */
+        .confeti {
+            position: fixed;
+            width: 10px;
+            height: 20px;
+            top: -20px;
+            animation: caer 5s linear forwards;
+            z-index: 100;
+        }
+
+        @keyframes caer {
+            to {
+                transform: translateY(110vh) rotate(720deg);
+            }
+        }
+
+        /* 🎁 REGALO GIGANTE */
+        .contenedor-regalo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            cursor: pointer;
+            z-index: 10;
+            position: relative;
+        }
+
+        .regalo {
+            width: 220px;
+            height: 200px;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
+        }
+
+        .regalo:hover {
+            transform: scale(1.1);
+        }
+
+        .caja {
+            width: 220px;
+            height: 150px;
+            background: linear-gradient(180deg, #e74c3c 0%, #c0392b 100%);
+            position: absolute;
+            bottom: 0;
+            border-radius: 5px;
+            box-shadow: inset 0 -10px 20px rgba(0,0,0,0.2);
+        }
+
+        .tapa {
+            width: 240px;
+            height: 50px;
+            background: linear-gradient(180deg, #ff6b6b 0%, #ee5a5a 100%);
+            position: absolute;
+            top: 0;
+            left: -10px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .cinta-vertical {
+            width: 40px;
+            height: 200px;
+            background: linear-gradient(90deg, #f1c40f 0%, #f39c12 100%);
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        .cinta-horizontal {
+            width: 220px;
+            height: 40px;
+            background: linear-gradient(180deg, #f1c40f 0%, #f39c12 100%);
+            position: absolute;
+            top: 80px;
+            z-index: 1;
+        }
+
+        .lazo {
+            width: 100px;
+            height: 60px;
+            background: linear-gradient(180deg, #f1c40f 0%, #f39c12 100%);
+            position: absolute;
+            top: -20px;
+            left: 60px;
+            border-radius: 50px 50px 0 0;
+            z-index: 3;
+        }
+
+        .texto-regalo {
+            margin-top: 240px;
+            font-size: 2.2rem;
+            color: white;
+            font-weight: bold;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            animation: palpitar 1.5s ease-in-out infinite;
+            text-align: center;
+        }
+
+        @keyframes palpitar {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+
+        /* 🤡 PAYASO */
+        .payaso {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 50;
+            animation: flotar 3s ease-in-out infinite;
+            transition: all 0.5s ease;
+        }
+
+        @keyframes flotar {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .cara-payaso {
+            width: 120px;
+            height: 120px;
+            background: #ffeaa7;
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border: 4px solid #fdcb6e;
+        }
+
+        .pelo {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140px;
+            height: 40px;
+            background: linear-gradient(90deg, #e74c3c, #9b59b6, #3498db, #2ecc71, #f1c40f, #e74c3c);
+            border-radius: 50%;
+        }
+
+        .ojos {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .ojo {
+            width: 15px;
+            height: 20px;
+            background: #2c3e50;
+            border-radius: 50%;
+            animation: parpadear 4s ease-in-out infinite;
+        }
+
+        @keyframes parpadear {
+            0%, 90%, 100% { transform: scaleY(1); }
+            95% { transform: scaleY(0.1); }
+        }
+
+        .nariz {
+            width: 25px;
+            height: 25px;
+            background: #e74c3c;
+            border-radius: 50%;
+            margin: 5px auto;
+            box-shadow: inset 0 -3px 5px rgba(0,0,0,0.2);
+        }
+
+        .boca {
+            width: 50px;
+            height: 25px;
+            border-bottom: 4px solid #e74c3c;
+            border-radius: 0 0 50% 50%;
+            margin: 5px auto;
+        }
+
+        .mensaje-payaso {
+            position: absolute;
+            left: 140px;
+            top: 0;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            max-width: 280px;
+            font-size: 1rem;
+            color: #2c3e50;
+            font-weight: bold;
+            border: 3px solid #f1c40f;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 🎉 MENSAJE FINAL */
+        .sorpresa {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 30px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            z-index: 200;
+            position: relative;
+        }
+
+        .sorpresa h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: palpitar 1s ease-in-out infinite;
+        }
+
+        .sorpresa p {
+            font-size: 1.5rem;
+            max-width: 700px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .emoji-grande {
+            font-size: 5rem;
+            margin: 20px 0;
+        }
+
+        /* 📱 Responsivo */
+        @media (max-width: 600px) {
+            .regalo { width: 160px; height: 145px; }
+            .caja { width: 160px; height: 110px; }
+            .tapa { width: 175px; }
+            .texto-regalo { font-size: 1.5rem; margin-top: 200px; }
+            .payaso { transform: scale(0.8); left: 5px; bottom: 5px; }
+            .mensaje-payaso { max-width: 200px; font-size: 0.9rem; }
+            .sorpresa h1 { font-size: 2.2rem; }
+            .sorpresa p { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 🎈 GLOBOS AUTOMÁTICOS -->
+    <div id="globos"></div>
+
+    <!-- 🎊 CONFETI AUTOMÁTICO -->
+    <div id="confeti"></div>
+
+    <!-- 🎁 PANTALLA INICIAL — REGALO -->
+    <div class="contenedor-regalo" id="pantallaRegalo">
+        <div class="regalo" onclick="abrirRegalo()">
+            <div class="cinta-vertical"></div>
+            <div class="cinta-horizontal"></div>
+            <div class="tapa"></div>
+            <div class="caja"></div>
+            <div class="lazo"></div>
+        </div>
+        <h2 class="texto-regalo">🎯 ¡APRIETA EL REGALO, RICARDO! 🎯<br>🎁 TU SORPRESA ESTÁ AQUÍ 🎁</h2>
+    </div>
+
+    <!-- 🎉 PANTALLA DE SORPRESA -->
+    <div class="sorpresa" id="pantallaSorpresa">
+        <div class="emoji-grande">🎂🎈🎁🎉🎊</div>
+        <h1>🎊 ¡FELIZ CUMPLEAÑOS, RICARDO! 🎊</h1>
+        <p>🎈 ¡Muchas felicidades, amigo! 🎈<br><br>
+        Que te la pases increíble hoy, rodeado de toda la gente que te quiere. 🫶<br><br>
+        Que tengas muchísima felicidad, salud, amor y muchos años más llenos de bendiciones. ✨<br><br>
+        Te deseo lo mejor de lo mejor, que todos tus sueños se cumplan y que la vida te regale momentos hermosos. 🎁<br><br>
+        ¡Eres un amigo increíble y te mereces TODO lo bueno del mundo! 🌎💛<br><br>
+        ¡Felicidades, Ricardo! 🥳🎂🎈</p>
+        <div class="emoji-grande">🎆🎇🎆🎇🎆</div>
+    </div>
+
+    <!-- 🤡 PAYASO HABLADOR -->
+    <div class="payaso" id="payaso">
+        <div class="cara-payaso">
+            <div class="pelo"></div>
+            <div class="ojos">
+                <div class="ojo"></div>
+                <div class="ojo"></div>
+            </div>
+            <div class="nariz"></div>
+            <div class="boca"></div>
+        </div>
+        <div class="mensaje-payaso" id="mensajePayaso">🤡 ¡Hola, Ricardo! ¡Felicidades!</div>
+    </div>
+
+    <script>
+        // ==============================================
+        // 🎈 GENERAR GLOBOS AUTOMÁTICAMENTE
+        // ==============================================
+        const coloresGlobos = ['#e74c3c', '#3498db', '#2ecc71', '#f1c40f', '#9b59b6', '#1abc9c', '#e91e63', '#ff9800'];
+        const contenedorGlobos = document.getElementById('globos');
+
+        function crearGlobo() {
+            const globo = document.createElement('div');
+            globo.className = 'globo';
+            globo.style.left = Math.random() * 100 + 'vw';
+            globo.style.backgroundColor = coloresGlobos[Math.floor(Math.random() * coloresGlobos.length)];
+            globo.style.animationDuration = (5 + Math.random() * 5) + 's';
+            contenedorGlobos.appendChild(globo);
+            setTimeout(() => globo.remove(), 12000);
+        }
+        setInterval(crearGlobo, 800);
+
+        // ==============================================
+        // 🎊 GENERAR CONFETI SIN PARAR
+        // ==============================================
+        const coloresConfeti = ['#e74c3c', '#3498db', '#2ecc71', '#f1c40f', '#9b59b6', '#fff', '#e91e63'];
+        const contenedorConfeti = document.getElementById('confeti');
+
+        function crearConfeti() {
+            const confeti = document.createElement('div');
+            confeti.className = 'confeti';
+            confeti.style.left = Math.random() * 100 + 'vw';
+            confeti.style.backgroundColor = coloresConfeti[Math.floor(Math.random() * coloresConfeti.length)];
+            confeti.style.animationDuration = (3 + Math.random() * 4) + 's';
+            confeti.style.transform = `rotate(${Math.random() * 360}deg)`;
+            confeti.style.width = (5 + Math.random() * 10) + 'px';
+            confeti.style.height = (10 + Math.random() * 15) + 'px';
+            contenedorConfeti.appendChild(confeti);
+            setTimeout(() => confeti.remove(), 7000);
+        }
+        setInterval(crearConfeti, 80);
+
+        // ==============================================
+        // 🎁 ABRIR REGALO → MOSTRAR SORPRESA
+        // ==============================================
+        function abrirRegalo() {
+            document.getElementById('pantallaRegalo').style.display = 'none';
+            document.getElementById('pantallaSorpresa').style.display = 'flex';
+            // Más confeti al abrir el regalo
+            for (let i = 0; i < 150; i++) {
+                setTimeout(crearConfeti, i * 10);
+            }
+        }
+
+        // ==============================================
+        // 🤡 PAYASO QUE CUENTA CHISTES
+        // ==============================================
+        const chistes = [
+            "🤡 ¡Feliz cumpleaños, Ricardo! 🎂",
+            "🤡 ¿Qué le dice un pastel a otro? ¡Estamos muy buenos, ja ja! 🎂",
+            "🤡 Ricardo, ¿sabes por qué te felicito? ¡Porque hoy cumples años y no te los guardas! 🎈",
+            "🤡 ¿Qué hace una vela en el cumpleaños? ¡Se enciende de emoción, jajaja! 🕯️",
+            "🤡 Ricardo, amigo, ¡tú sí eres el mejor de la fiesta! 🎉",
+            "🤡 ¿Sabes por qué los cumpleaños son buenos para ti? ¡Porque mientras más tienes, más vives, ja ja! 🎂",
+            "🤡 ¡Ricardo, que vivas mil años y más! 🎊",
+            "🤡 ¿Qué le dice un globo a otro? ¡Qué bien nos vemos, estamos inflados de felicidad, jajaja! 🎈",
+            "🤡 Ricardo, amigo, ¡que la vida te regale todo lo que mereces! 🎁",
+            "🤡 ¿Sabes por qué hoy es tu día? ¡Porque naciste tú y el mundo mejoró, ja ja ja! 🌍",
+            "🤡 ¡Muchas felicidades, Ricardo! ¡Que cumplas muchos más! 🥳",
+            "🤡 ¿Sabes cuál es el pastel más viejo? ¡El que tiene muchos años, ja ja ja! 🎂",
+            "🤡 Ricardo, ¡eres más grande que el 2º centenario! ¡Y más divertido! 😄",
+            "🤡 ¡Salud, amigo! ¡Por muchos años más! 🥂"
+        ];
+
+        let indiceChiste = 0;
+        const elementoMensaje = document.getElementById('mensajePayaso');
+
+        function siguienteChiste() {
+            elementoMensaje.style.opacity = 0;
+            setTimeout(() => {
+                elementoMensaje.textContent = chistes[indiceChiste];
+                elementoMensaje.style.opacity = 1;
+                indiceChiste = (indiceChiste + 1) % chistes.length;
+            }, 300);
+        }
+
+        // Cambiar chiste cada 5 segundos
+        setInterval(siguienteChiste, 5000);
+
+        // Primera presentación
+        setTimeout(siguienteChiste, 1500);
+    </script>
+
+</body>
+</html>
